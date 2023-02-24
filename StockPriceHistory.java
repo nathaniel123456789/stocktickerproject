@@ -1,18 +1,24 @@
 import yahoofinance.YahooFinance;
 import yahoofinance.*;
 import java.util.Calendar;
+import yahoofinance.histquotes.Interval;
+import java.util.Map;
 public class StockPriceHistory
 {
-
     private final String TICKER = "GOOG";
-    
+    private Interval DAILY = Interval.DAILY;   
     /**
      * Retrieve the stock price data
      */
     public void run() {
         try {
             Stock stock = YahooFinance.get(TICKER, true);
+            Calendar to = Calendar.getInstance();
+            Calendar from = Calendar.getInstance();
+            from.add(Calendar.YEAR, -1);
+            Stock google = YahooFinance.get("GOOG", from, to, Interval.WEEKLY);
             System.out.println(stock);
+            System.out.println(google.getHistory());
         } catch (Exception e) {
             System.out.println("Error in stock call");    
         }
@@ -32,7 +38,6 @@ public class StockPriceHistory
         return dateStr;
     }
     
-
     /**
      * Main method to run the program
      */
@@ -41,4 +46,3 @@ public class StockPriceHistory
         sph.run();
     }
 }
-
