@@ -3,6 +3,10 @@ import yahoofinance.*;
 import java.util.Calendar;
 import yahoofinance.histquotes.Interval;
 import java.util.Map;
+import java.util.Listyahoofinance.histquotes.HistoricalQuotes;
+import java.util.HashMap;
+import java.io.FileWriter;
+import java.io.File;
 public class StockPriceHistory
 {
     private final String TICKER = "GOOG";
@@ -16,7 +20,8 @@ public class StockPriceHistory
             Calendar to = Calendar.getInstance();
             Calendar from = Calendar.getInstance();
             from.add(Calendar.YEAR, -1);
-            Stock google = YahooFinance.get("GOOG", from, to, Interval.WEEKLY);
+            Stock google = YahooFinance.get("GOOG");
+            List<HistoricalQuote> googleHistQuotes = google.getHistory(from, to, Interval>DAILY);
             System.out.println(stock);
             System.out.println(google.getHistory());
         } catch (Exception e) {
