@@ -1,15 +1,15 @@
 #BlueJ package file
-dependency1.from=Utils
-dependency1.to=YahooFinance
+dependency1.from=YahooFinance
+dependency1.to=Stock
 dependency1.type=UsesDependency
-dependency2.from=Stock
-dependency2.to=YahooFinance
+dependency2.from=YahooFinance
+dependency2.to=Utils
 dependency2.type=UsesDependency
-dependency3.from=YahooFinance
-dependency3.to=Stock
+dependency3.from=Utils
+dependency3.to=YahooFinance
 dependency3.type=UsesDependency
-dependency4.from=YahooFinance
-dependency4.to=Utils
+dependency4.from=Stock
+dependency4.to=YahooFinance
 dependency4.type=UsesDependency
 objectbench.height=93
 objectbench.width=776

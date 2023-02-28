@@ -1,29 +1,47 @@
 import yahoofinance.YahooFinance;
+import yahoofinance.histquotes.Interval;
+import yahoofinance.histquotes.HistoricalQuote;
 import yahoofinance.*;
 import java.util.Calendar;
-import yahoofinance.histquotes.Interval;
+import java.util.List; 
 import java.util.Map;
-import java.util.Listyahoofinance.histquotes.HistoricalQuotes;
 import java.util.HashMap;
-import java.io.FileWriter;
 import java.io.File;
+import java.io.FileWriter;
+/**
+ * Retrieve historical stock prices
+ */
 public class StockPriceHistory
 {
+
     private final String TICKER = "GOOG";
-    private Interval DAILY = Interval.DAILY;   
+    private Interval DAILY = Interval.DAILY;
+    
     /**
      * Retrieve the stock price data
      */
     public void run() {
         try {
-            Stock stock = YahooFinance.get(TICKER, true);
-            Calendar to = Calendar.getInstance();
+            
             Calendar from = Calendar.getInstance();
+            Calendar to = Calendar.getInstance();
             from.add(Calendar.YEAR, -1);
-            Stock google = YahooFinance.get("GOOG");
-            List<HistoricalQuote> googleHistQuotes = google.getHistory(from, to, Interval>DAILY);
-            System.out.println(stock);
-            System.out.println(google.getHistory());
+ 
+            Stock google2 = YahooFinance.get("GOOG");
+            List<HistoricalQuote> googleHistQuotes = google2.getHistory(from, to, Interval.DAILY);
+            Map<String,String> datas = new HashMap<String,String>();
+            
+            for (int i=0;i < googleHistQuotes.size();i++) {
+                String date = googleHistQuotes.get(i).toString();
+                date = date.substring(5, 15);
+                String price = googleHistQuotes.get(i).toString();
+                price = price.split("[\\(\\)]")[1];
+                
+                System.out.println(date + ", "+  price);
+            }
+
+            System.out.println(datas);
+            
         } catch (Exception e) {
             System.out.println("Error in stock call");    
         }
